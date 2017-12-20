@@ -13,16 +13,21 @@ class TrackingController extends Controller
 {
   /**
    * @Route("/track.gif", name="track")
+   * @param Request $request
+   * @return TransparentPixelResponse
    */
   public function trackEmail(Request $request)
   {
     $email = $request->query->get('email');
+    $type = $request->query->get('type');
 
     if (!is_null($email) && !$this->emailExists($email))
     {
       $em = $this->getDoctrine()->getManager();
 
-      $tracking = (new Tracking())->setEmailAddress($email);
+      $tracking = (new Tracking())
+        ->setEmailAddress($email)
+        ->setType(!empty($type) ? $type : null);
 
       $em->persist($tracking);
       $em->flush();

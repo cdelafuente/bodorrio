@@ -28,6 +28,11 @@ class Tracking
    */
   private $createDate;
 
+  /**
+   * @ORM\Column(type="string", length=255)
+   */
+  private $type;
+
   public function __construct()
   {
     $this->createDate = new DateTime();
@@ -58,6 +63,14 @@ class Tracking
   }
 
   /**
+   * @return string
+   */
+  public function getType()
+  {
+    return $this->type;
+  }
+
+  /**
    * @param string $emailAddress
    * @return Tracking
    */
@@ -76,4 +89,15 @@ class Tracking
     $this->createDate = $createDate;
     return $this;
   }
+
+  /**
+   * @param string $type
+   * @return Tracking
+   */
+  public function setType($type)
+  {
+    $this->type = $type;
+    return $this;
+  }
+
 }
