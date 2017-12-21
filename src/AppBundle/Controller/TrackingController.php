@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TrackingController extends Controller
 {
+
   /**
    * @Route("/track.gif", name="track")
    * @param Request $request
@@ -21,7 +22,7 @@ class TrackingController extends Controller
     $email = $request->query->get('email');
     $type = $request->query->get('type');
 
-    if (!is_null($email) && !$this->emailExists($email))
+    if ($this->shouldTrackEmail($email, $type))
     {
       $em = $this->getDoctrine()->getManager();
 
@@ -36,13 +37,47 @@ class TrackingController extends Controller
     return new TransparentPixelResponse();
   }
 
-  private function emailExists($email)
+  /**
+   * @param string $email
+   * @param string $type
+   * @return bool
+   */
+  private function shouldTrackEmail($email, $type)
+  {
+    if (empty($email))
+    {
+      return false;
+    }
+
+    if (empty($type))
+    {
+      return false;
+    }
+
+    if ($this->trackingRecordExists($email, $type))
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * @param string $email
+   * @param $type
+   * @return bool
+   */
+  private function trackingRecordExists($email, $type)
   {
     $repository = $this->getDoctrine()->getRepository(Tracking::class);
     $tracking = $repository->findOneBy(
-      ['emailAddress' => $email]
+      [
+        'emailAddress' => $email,
+        'type' => $type
+      ]
     );
 
     return !empty($tracking);
   }
+
 }
