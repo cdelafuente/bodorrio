@@ -1,0 +1,67 @@
+.navigation {
+  width: 100%;
+  float: left;
+  margin: 1.5em 0 10px 0;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  &__item {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    background: url('/img/watercolor3.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-family: 'Ernest and Emily Bold';
+    font-size: 2.85em;
+    text-align: center;
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0;
+    height: 60px;
+    float: left;
+    position: relative;
+    white-space: nowrap;
+
+    &--uppercase {
+      font-family: 'Ernest and Emily Upright Bold';
+      text-transform: uppercase;
+    }
+
+    &--fixed-line-height a {
+      transform: translateX(-50%) translateY(-40%);
+    }
+
+    a {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+
+      &:link,
+      &:visited,
+      &:hover,
+      &:active {
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+
+  &__item-wedding,
+  &__item-details,
+  &__item-lodging {
+    width: 180px;
+  }
+
+  &__item-rsvp {
+    width: 454px;
+  }
+}
