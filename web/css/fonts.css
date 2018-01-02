@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "Ernest and Emily";
+  src: url("/fonts/ErnestAndEmily.ttf");
+}
+
+@font-face {
+  font-family: "Ernest and Emily Bold";
+  src: url("/fonts/ErnestAndEmilyBold.ttf");
+}
+
+@font-face {
+  font-family: "Ernest and Emily Upright Bold";
+  src: url("/fonts/ErnestAndEmilyUprightSolid.ttf");
+}
