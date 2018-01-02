@@ -1,0 +1,15 @@
+{
+  "name": "bodorrio",
+  "version": "0.0.1",
+  "author": "Daniel de la Fuente",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdelafuente/bodorrio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cdelafuente/bodorrio/issues"
+  },
+  "devDependencies": {
+    "node-sass": "^4.7.2"
+  }
+}
