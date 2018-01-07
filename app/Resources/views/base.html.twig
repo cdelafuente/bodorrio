@@ -4,10 +4,29 @@
     <meta charset="utf-8" />
     <title>{% block title %}{% endblock %}</title>
     <link rel="icon" type="image/png" href="/favicon-32.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
     <link rel="stylesheet" href="/css/styles.css" />
     {% block stylesheets %}{% endblock %}
   </head>
   <body>
+    {% block navigation %}
+    <nav class="navigation">
+      <ul>
+        <li class="navigation__item navigation__item--fixed-line-height navigation__item-wedding">
+          <a href="/">Boda</a>
+        </li>
+        <li class="navigation__item navigation__item--fixed-line-height navigation__item-details">
+          <a href="/details">Detalles</a>
+        </li>
+        <li class="navigation__item navigation__item-lodging">
+          <a href="/">Hospedaje</a>
+        </li>
+        <li class="navigation__item navigation__item--fixed-line-height navigation__item-rsvp">
+          <a href="/">Confirmar asistencia</a>
+        </li>
+      </ul>
+    </nav>
+    {% endblock %}
     {% block body %}{% endblock %}
     {% block javascripts %}{% endblock %}
   </body>

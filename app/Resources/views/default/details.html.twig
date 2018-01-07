@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Bodorrio Dany y Daniel | Detalles
+{% endblock %}
+{% block body %}
+  <style>
+    .details {
+      background-color: #fff;
+      padding-bottom: 1em;
+    }
+
+    .details--women {
+      background-image: url('/img/papel-picado.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      padding-top: 250px;
+    }
+
+    .details--men {
+      padding-top: 1em;
+    }
+
+    .details h2 {
+      text-align: center;
+      font-size: 2em;
+    }
+
+    .details__dresses {
+      width: 90%;
+      height: 748px;
+      margin: 0 auto 1em auto;
+      position: relative;
+    }
+
+    .details__dresses:before {
+      content: '';
+      width: 876px;
+      height: 711px;
+      background-color: #be8dc0;
+      position: absolute;
+      top: 18.5px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .details__dresses img {
+      display: block;
+      position: absolute;
+      width: 922px;
+      height: 748px;
+    }
+
+    .details__shoes {
+      width: 90%;
+      height: 324px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .details__shoes:before {
+      content: '';
+      background-color: #f277ae;
+      display: block;
+      width: 876px;
+      height: 292px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .details__shoes img {
+      display: block;
+      width: 922px;
+      height: 325px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .note {
+      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      color: #fff;
+      font-family: 'Open Sans';
+      font-size: 1.1em;
+      text-align: center;
+      padding: 0.75em 0.9375em;
+      margin: 0.625em 0;
+    }
+
+    .note span {
+      font-family: "Ernest and Emily";
+      font-size: 2.25em;
+    }
+
+    .note--green {
+      background-image: url('/img/watercolor4.jpg');
+    }
+
+    .note--purple {
+      background-image: url('/img/watercolor11.jpg');
+      margin-bottom: 24px;
+    }
+
+    .details__suits {
+      width: 90%;
+      height: 1446px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .details__suits:before {
+      content: '';
+      background-color: #8ebdca;
+      display: block;
+      width: 876px;
+      height: 1372px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .details__suits img {
+      display: block;
+      width: 922px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+
+  </style>
+  <section class="main">
+    <div class="details details--women">
+      <h2>
+        Para los que nos han preguntado acerca de como ir vestidos, aquí unos ejemplos:
+      </h2>
+      <div class="details__dresses">
+        <img src="/img/vestidos.png"/>
+      </div>
+      <div class="details__shoes">
+        <img src="/img/shoes.png"/>
+      </div>
+    </div>
+    <div class="note note--green">
+      <span>Mujeres,</span> habrá pasto así que les recomendamos no usar tacón de punta.
+    </div>
+    <div class="details details--men">
+      <div class="details__suits">
+        <img src="/img/trajes.png"/>
+      </div>
+    </div>
+    <div class="note note--purple">
+      <span>El clima será caluroso,</span> y si más tarde se sienten cansados, sientanse<br />
+      libres de llevar sus tenis o calzado cómodo.
+    </div>
+  </section>
+{% endblock %}
