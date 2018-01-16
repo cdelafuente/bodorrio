@@ -8,7 +8,7 @@
     padding: 0;
   }
 
-  li:not(:last-child) {
+  &__item:not(:last-child) {
     margin-right: 10px;
   }
 
@@ -35,16 +35,11 @@
       text-transform: uppercase;
     }
 
-    &--fixed-line-height a {
+    &--fixed-line-height > a {
       transform: translateX(-50%) translateY(-40%);
     }
 
     a {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-
       &:link,
       &:visited,
       &:hover,
@@ -52,6 +47,18 @@
         text-decoration: none;
         color: #fff;
       }
+    }
+
+    & > a,
+    & > span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    & > span {
+      color: #fff;
     }
   }
 

@@ -9,6 +9,29 @@
     {% block stylesheets %}{% endblock %}
   </head>
   <body>
+    <style>
+      .sub-menu {
+        display: none;
+        background-color: rgba(252, 154, 203, 0.8);
+        margin: 0;
+        padding: 0;
+        font-size: 0.85em;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+      }
+
+      .sub-menu li {
+        list-style-type: none;
+        text-align: left;
+        padding: 10px;
+      }
+
+      .navigation__item-details:hover .sub-menu {
+        display: block;
+      }
+    </style>
     {% block navigation %}
     <nav class="navigation">
       <ul>
@@ -16,7 +39,15 @@
           <a href="/">Boda</a>
         </li>
         <li class="navigation__item navigation__item--fixed-line-height navigation__item-details">
-          <a href="/details">Detalles</a>
+          <span>Detalles</span>
+          <ul class="sub-menu">
+            <li>
+              <a href="/details/attire">Qué Vestir</a>
+            </li>
+            <li>
+              <a href="/details/wedding">La Boda</a>
+            </li>
+          </ul>
         </li>
         <li class="navigation__item navigation__item-lodging">
           <a href="/">Hospedaje</a>

@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Bodorrio Dany y Daniel | Detalles
+{% endblock %}
+{% block body %}
+  <style>
+    .main {
+      box-shadow: none;
+    }
+
+    .details--wedding {
+      background-image: url('/img/papel-picado.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      padding-top: 250px;
+      margin-bottom: 1em;
+    }
+
+    .details__venue {
+      width: 90%;
+      margin: 3.2em auto 0 auto;
+    }
+
+    .details__venue img {
+      width: 100%;
+      display: block;
+    }
+
+    .details__venue p {
+      text-align: center;
+      font-size: 3.5em;
+      margin: 0.5em 0 0 0;
+    }
+
+    .details__map {
+      padding: 0;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .details__map img {
+      display: block;
+      width: 100%;
+    }
+
+    .details__map a:link,
+    .details__map a:visited,
+    .details__map a:active {
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    .details__map a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .details__map a {
+      position: absolute;
+      bottom: 65px;
+      left: 100px;
+      font-size: 2em;
+    }
+
+  </style>
+  <section class="main">
+    <div class="details details--wedding">
+      <div class="details__venue">
+        <img src="/img/jarding.jpg" />
+        <p class="text--center text--large">
+          10 de Marzo de 2018 a las 14:00 hrs. <br />
+          Tepoztlán, Morelos
+        </p>
+      </div>
+    </div>
+    <div class="details details__map">
+      <img src="/img/mapa.png" />
+      <a href="https://goo.gl/maps/RMn3oyWZUnA2">Link de Google Maps</a>
+    </div>
+  </section>
+{% endblock %}

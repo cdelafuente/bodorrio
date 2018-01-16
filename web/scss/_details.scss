@@ -1,0 +1,101 @@
+.details {
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  padding-bottom: 1em;
+
+  &--women {
+    background-image: url('/img/papel-picado.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-top: 250px;
+  }
+
+  &--men {
+    padding-top: 1em;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2em;
+  }
+
+  &__dresses {
+    width: 90%;
+    height: 748px;
+    margin: 0 auto 1em auto;
+    position: relative;
+
+    &:before {
+      content: '';
+      width: 876px;
+      height: 711px;
+      background-color: #be8dc0;
+      position: absolute;
+      top: 18.5px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+     img {
+      display: block;
+      position: absolute;
+      width: 922px;
+      height: 748px;
+    }
+  }
+
+  .details__shoes {
+    width: 90%;
+    height: 324px;
+    margin: 0 auto;
+    position: relative;
+
+    &:before {
+      content: '';
+      background-color: #f277ae;
+      display: block;
+      width: 876px;
+      height: 292px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    img {
+      display: block;
+      width: 922px;
+      height: 325px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .details__suits {
+    width: 90%;
+    height: 1446px;
+    margin: 0 auto;
+    position: relative;
+
+    &:before {
+      content: '';
+      background-color: #8ebdca;
+      display: block;
+      width: 876px;
+      height: 1372px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    img {
+      display: block;
+      width: 922px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}

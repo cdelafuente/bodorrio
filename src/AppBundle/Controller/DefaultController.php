@@ -18,11 +18,19 @@ class DefaultController extends Controller
   }
 
   /**
-   * @Route("/details", name="details")
+   * @Route("/details/attire", name="details")
    */
-  public function detailsAction(Request $request)
+  public function attireAction(Request $request)
   {
     return $this->render('default/details.html.twig');
+  }
+
+  /**
+   * @Route("/details/wedding", name="wedding")
+   */
+  public function weddingAction(Request $request)
+  {
+    return $this->render('default/wedding.html.twig');
   }
 
 }
