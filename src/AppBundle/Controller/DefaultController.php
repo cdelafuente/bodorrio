@@ -33,4 +33,12 @@ class DefaultController extends Controller
     return $this->render('default/wedding.html.twig');
   }
 
+  /**
+   * @Route("/accommodations", name="accommodations")
+   */
+  public function accommodationsAction(Request $request)
+  {
+    return $this->render('default/accommodations.html.twig');
+  }
+
 }
