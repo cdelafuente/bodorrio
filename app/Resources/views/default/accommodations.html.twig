@@ -4,7 +4,221 @@
   Bodorrio Dany y Daniel | Hospedaje
 {% endblock %}
 {% block body %}
-  <section class="main">
+  <style>
+    .accommodations {
+      background-color: #fff;
+      background-image: url('/img/papel-picado.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      padding-top: 250px;
+      padding-bottom: 2em;
+      margin-bottom: 1em;
+    }
 
+    .accommodations table {
+      width: 90%;
+      margin: 2em auto 0 auto;
+      border-collapse: collapse;
+    }
+
+
+    .accommodations td {
+      width: 50%;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .accommodations tr:not(:last-child) td {
+      border-bottom: 2px solid #ff9dc1;
+    }
+
+    .accommodations a:link,
+    .accommodations a:visited,
+    .accommodations a:active {
+      color: #000;
+      text-decoration: none;
+    }
+
+    .accommodations a:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+
+    .hotel__name {
+      font-size: 1.65em;
+    }
+
+    .hotel__uri {
+      font-family: "Open Sans";
+      font-size: 1em;
+    }
+  </style>
+  <section class="main">
+    <div class="accommodations">
+      <table>
+        <tbody>
+          <tr>
+            <td class="hotel__name">Nuevo Amanecer</td>
+            <td class="hotel__uri">
+              <a href="https://www.nuevoamanecerhotels.com.mx/">
+                https://www.nuevoamanecerhotels.com.mx/
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Hotel Posada del Tepozteco</td>
+            <td class="hotel__uri">
+              <a href="http://www.posadadeltepozteco.com.mx">
+                www.posadadeltepozteco.com.mx
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Sitio Sagrado</td>
+            <td class="hotel__uri">
+              <a href="http://www.sitiosagrado.com">
+                www.sitiosagrado.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Hotel Boutique Casa Fernanda</td>
+            <td class="hotel__uri">
+              <a href="http://www.casafernanda.com">
+                www.casafernanda.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Colibri</td>
+            <td class="hotel__uri">
+              <a href="http://www.hotelboutiquecolibri.com">
+                www.hotelboutiquecolibri.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Hotel La Buena Vibra</td>
+            <td class="hotel__uri">
+              <a href="http://www.hotelbuenavibra.com">
+                www.hotelbuenavibra.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Hostal de La Luz</td>
+            <td class="hotel__uri">
+              <a href="http://www.hostaldelaluzmexico.com">
+                www.hostaldelaluzmexico.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Xacallan Hotel Pueblo Magico</td>
+            <td class="hotel__uri">
+              <a href="http://www.xacallan.com">
+                www.xacallan.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Tubohotel</td>
+            <td class="hotel__uri">
+              <a href="http://www.tubohotel.com">
+                www.tubohotel.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Hotel Real del Valle</td>
+            <td class="hotel__uri">
+              <a href="www.hotelrealdelvalle.com.mx">
+                www.hotelrealdelvalle.com.mx
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Hotel Espacio Magico</td>
+            <td class="hotel__uri">
+              <a href="http://www.espaciomagico.net">
+                www.espaciomagico.net
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Casa Bugambilias Tepoztlán</td>
+            <td class="hotel__uri">
+              <a href="http://www.casabugambilia.com">
+                www.casabugambilia.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Vista Tepoz</td>
+            <td class="hotel__uri">
+              <a href="http://www.vistatepoz.com/index.php/contacto.html">
+                www.vistatepoz.com/index.php/contacto.html
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Leyenda del Tepozteco</td>
+            <td class="hotel__uri">
+              <a href="http://www.leyendadeltepozteco.com">
+                www.leyendadeltepozteco.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Hotel Nican Mo Calli Posada</td>
+            <td class="hotel__uri">
+              <a href="http://www.hotelnican.com/tarifas.html">
+                www.hotelnican.com/tarifas.html
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Hospedaje La Hoja</td>
+            <td class="hotel__uri">
+              <a href="www.facebook.com/Hospedaje-La-Hoja-1425724944321872/">
+                www.facebook.com/Hospedaje-La-Hoja-1425724944321872/
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Posada los Robles</td>
+            <td class="hotel__uri">
+              <a href="http://www.posadalosrobles.com">
+                www.posadalosrobles.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Posada el Canto del Cenzontle </td>
+            <td class="hotel__uri">
+              <a href="http://hoteltepoztlan.wix.com">
+                http://hoteltepoztlan.wix.com
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Hostal Ventana del Cielo</td>
+            <td class="hotel__uri">
+              <a href="http://hostalventanadelcielo.com.mx">
+                http://hostalventanadelcielo.com.mx
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="hotel__name">Hotel Puerto Villamar</td>
+            <td class="hotel__uri">
+              <a href="http://www.hotelpuertovillamar.com">
+                www.hotelpuertovillamar.com
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 {% endblock %}
