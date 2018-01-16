@@ -1,0 +1,227 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Bodorrio Dany y Daniel | Confirmar asistencia
+{% endblock %}
+
+{% block body %}
+  <style>
+    .rsvp {
+      background-image: url('/img/papel-picado.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      padding-top: 250px;
+      background-color: #fff;
+      margin-bottom: 24px;
+    }
+
+    .rsvp h2 {
+      text-align: center;
+      font-size: 3em;
+    }
+
+    .form {
+      width: 90%;
+      margin: 0 auto;
+      padding-bottom: 2em;
+    }
+
+    .form__field {
+      width: 50%;
+    }
+
+    .form__field label {
+      font-size: 2em;
+    }
+
+    .form__field input[type=text] {
+      font-size: 1em;
+      font-family: "Open Sans";
+      width: 100%;
+      padding: 5px;
+    }
+
+    .form__field--name {
+      margin-bottom: 1.5em;
+    }
+
+    .form__field--attendance {
+      margin-bottom: 1.5em;
+    }
+
+    .form__field--attendance label {
+      display: inline-block;
+    }
+
+    .form__field--attendance label:first-child {
+      width: 50%;
+    }
+
+    .form__field--attendance label:not(:first-child) {
+      width: 15%;
+    }
+
+    .form__field--submit {
+      text-align: right;
+    }
+
+    .form__field--submit input[type=submit] {
+      border: none;
+      background-color: #f593bf;
+      font-family: "Ernest and Emily";
+      font-size: 2em;
+      padding: 10px 16px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .form__field--guest-attendance {
+      display: none;
+      margin-bottom: 1.5em;
+    }
+
+    .form__field--guest-attendance label {
+      display: inline-block;
+    }
+
+    .form__field--guest-attendance label:first-child {
+      margin-right: 1em;
+    }
+
+    .form__field--guest-attendance label:not(:first-child) {
+      width: 15%;
+    }
+
+    .form__field--guest-name {
+      display: none;
+      margin-bottom: 1.5em;
+    }
+
+    .form__field--children-attendance {
+      display: none;
+      margin-bottom: 1.5em;
+    }
+
+    .form__field--children-attendance label {
+      display: inline-block;
+    }
+
+    .form__field--children-attendance label:first-child {
+      margin-right: 1.5em;
+    }
+
+    .form__field--children-attendance label:not(:first-child) {
+      width: 15%;
+    }
+
+    .form__field--children-number {
+      display: none;
+      margin-bottom: 1.5em;
+    }
+
+    .form__field--children-number input[type=text] {
+      width: 25%;
+    }
+  </style>
+  <section class="main">
+    <div class="rsvp">
+      <h2>
+        ¡Nos encantaría que nos acompañes!
+      </h2>
+      <form class="form" action="/rsvp" method="post">
+        <div class="form__field form__field--name">
+          <label>Nombre completo:</label>
+          <div><input type="text" name="full-name" /></div>
+        </div>
+        <div class="form__field form__field--attendance">
+          <label>Piensas asistir:</label>
+          <label>
+            Si <input type="radio" name="attending" value="yes" />
+          </label>
+          <label>
+            No <input type="radio" name="attending" value="no" />
+          </label>
+        </div>
+        <div class="form__field form__field--guest-attendance">
+          <label>¿Vas a llevar acompañante?</label>
+          <label>
+            Si <input type="radio" name="guest-attending" value="yes" />
+          </label>
+          <label>
+            No <input type="radio" name="guest-attending" value="no" checked="checked" />
+          </label>
+        </div>
+        <div class="form__field form__field--guest-name">
+          <label>Nombre completo de tu acompañante:</label>
+          <div>
+            <input type="text" name="guest-name" />
+          </div>
+        </div>
+        <div class="form__field form__field--children-attendance">
+          <label>¿Vas a llevar niños?</label>
+          <label>
+            Si <input type="radio" name="children-attending" value="yes" />
+          </label>
+          <label>
+            No <input type="radio" name="children-attending" value="no" checked="checked" />
+          </label>
+        </div>
+        <div class="form__field form__field--children-number">
+          <label>Número de niños:</label>
+          <div>
+            <input type="text" name="children-number" />
+          </div>
+        </div>
+        <div class="form__field form__field--submit">
+          <input type="submit" value="Enviar" />
+        </div>
+      </form>
+    </div>
+  </section>
+  <script src="/js/jquery.js"></script>
+  <script>
+    $(function () {
+      $('.form__field--attendance input[type=radio]').on('click', function (evt) {
+        if ($(this).val() == 'yes') {
+          $('.form__field--guest-attendance').show();
+
+          $('.form__field--children-attendance').show();
+          $('.form__field--children-attendance input[value=no]').attr('checked', true);
+        }
+        else {
+          $('.form__field--guest-attendance').hide();
+          $('.form__field--guest-attendance input[value=no]').attr('checked', true);
+
+          $('.form__field--guest-name').hide();
+          $('.form__field--guest-name input').val('');
+
+          $('.form__field--children-attendance').hide();
+          $('.form__field--children-attendance input[value=no]').attr('checked', true);
+
+          $('.form__field--children-number').hide();
+          $('.form__field--children-number input').val('');
+        }
+      });
+
+      $('.form__field--guest-attendance input[type=radio]').on('click', function () {
+        if ($(this).val() == 'yes') {
+          $('.form__field--guest-name').show();
+        }
+        else {
+          $('.form__field--guest-name').hide();
+          $('.form__field--guest-name input').val('');
+        }
+      });
+
+      $('.form__field--children-attendance input[type=radio]').on('click', function () {
+        if ($(this).val() == 'yes') {
+          $('.form__field--children-number').show();
+        }
+        else {
+          $('.form__field--children-number').hide();
+          $('.form__field--children-number input').val('');
+        }
+      });
+    });
+  </script>
+{% endblock %}
