@@ -4,15 +4,18 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Confirmation;
 use AppBundle\Service\ConfirmationService;
+use AppBundle\Service\RsvpRequestValidator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
 
-  const ERROR_FULL_NAME_REQUIRED = 'Nombre completo requerido';
-  const ERROR_ATTENDANCE_REQUIRED = 'Asistencia requerida';
+  const CONFIRMATION_EMAIL_SUBJECT = 'Confirmacion de Asistencia Boda D&D';
+  const CONFIRMATION_EMAIL_SENDER = 'rsvp@bodorrio-dany-daniel.com';
 
   /**
    * @Route("/", name="homepage")
@@ -51,51 +54,41 @@ class DefaultController extends Controller
    */
   public function rsvpAction(Request $request)
   {
-    $errors = [];
-
     if ($request->getMethod() === Request::METHOD_POST)
     {
-      if (!$request->get('full-name', null))
-      {
-        $errors[] = self::ERROR_FULL_NAME_REQUIRED;
-      }
-
-      if (!$request->get('attending', null))
-      {
-        $errors[] = self::ERROR_ATTENDANCE_REQUIRED;
-      }
+      $validator = new RsvpRequestValidator($request);
+      $errors = $validator->validate();
 
       if (!empty($errors))
       {
         return $this->render(
           'default/rsvp.html.twig',
           [
-            'errors' => $errors
+            'errors' => $errors,
+            'confirmed' => false,
+            'previouslyConfirmed' => false
           ]
         );
       }
 
       $confirmation = $this->saveConfirmation($request);
 
-      if (empty($confirmation))
-      {
-        return $this->render(
-          'default/rsvp.html.twig',
-          [
-            'previouslyConfirmed' => true
-          ]
-        );
-      }
-
       return $this->render(
         'default/rsvp.html.twig',
         [
-          'confirmed' => true
+          'previouslyConfirmed' => empty($confirmation),
+          'confirmed' => !empty($confirmation)
         ]
       );
     }
 
-    return $this->render('default/rsvp.html.twig');
+    return $this->render(
+      'default/rsvp.html.twig',
+      [
+        'previouslyConfirmed' => false,
+        'confirmed' => false
+      ]
+    );
   }
 
   /**

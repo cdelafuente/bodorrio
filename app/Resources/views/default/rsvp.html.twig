@@ -144,9 +144,11 @@
   </style>
   <section class="main">
     <div class="rsvp">
-      {% if confirmed is not defined %}
-        {% if previouslyConfirmed is defined %}
-          <h2 class="thanks">¡Tu asistencia ya había sido confirmada!</h2>
+      {% if confirmed %}
+        <h2 class="thanks">¡Gracias por confirmar tu asistencia!</h2>
+      {% else %}
+        {% if previouslyConfirmed %}
+          <h2 class="thanks">¡Tu asistencia ya ha sido confirmada!</h2>
         {% else %}
           <h2>
             ¡Nos encantaría que nos acompañes!
@@ -207,8 +209,6 @@
             </div>
           </form>
         {% endif %}
-      {% else %}
-        <h2 class="thanks">¡Gracias por confirmar tu asistencia!</h2>
       {% endif %}
     </div>
   </section>
