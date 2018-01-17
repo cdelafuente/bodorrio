@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Confirmation;
+use AppBundle\Service\ConfirmationService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -74,18 +75,17 @@ class DefaultController extends Controller
         );
       }
 
-      $em = $this->getDoctrine()->getManager();
+      $confirmation = $this->saveConfirmation($request);
 
-      $confirmation = (new Confirmation())
-        ->setFullName($request->get('full-name', null))
-        ->setAttending($request->get('attending', false) == 'yes' ? true : false)
-        ->setGuestAttending($request->get('guest-attending', false) == 'yes' ? true: false)
-        ->setGuestName($request->get('guest-name', ''))
-        ->setChildrenAttending($request->get('children-attending', false) == 'yes' ? true : false)
-        ->setChildrenNumber($request->get('children-number', null));
-
-      $em->persist($confirmation);
-      $em->flush();
+      if (empty($confirmation))
+      {
+        return $this->render(
+          'default/rsvp.html.twig',
+          [
+            'previouslyConfirmed' => true
+          ]
+        );
+      }
 
       return $this->render(
         'default/rsvp.html.twig',
@@ -96,6 +96,30 @@ class DefaultController extends Controller
     }
 
     return $this->render('default/rsvp.html.twig');
+  }
+
+  /**
+   * @param Request $request
+   * @return Confirmation|null
+   */
+  private function saveConfirmation(Request $request)
+  {
+    $service = new ConfirmationService($this->getDoctrine()->getManager());
+
+    if ($service->attendeeExists($request->get('full-name')))
+    {
+      return null;
+    }
+
+    return $service->addConfirmation(
+      (new Confirmation())
+        ->setFullName($request->get('full-name', null))
+        ->setAttending($request->get('attending', false) == 'yes' ? true : false)
+        ->setGuestAttending($request->get('guest-attending', false) == 'yes' ? true: false)
+        ->setGuestName($request->get('guest-name', ''))
+        ->setChildrenAttending($request->get('children-attending', false) == 'yes' ? true : false)
+        ->setChildrenNumber($request->get('children-number', null))
+    );
   }
 
 }

@@ -145,68 +145,72 @@
   <section class="main">
     <div class="rsvp">
       {% if confirmed is not defined %}
-      <h2>
-        ¡Nos encantaría que nos acompañes!
-      </h2>
-      <form class="form" action="/rsvp" method="post">
-        {% if errors is defined %}
-          <ul class="form__errors">
-          {% for error in errors %}
-            <li>{{ error }}</li>
-          {% endfor %}
-          </ul>
+        {% if previouslyConfirmed is defined %}
+          <h2 class="thanks">¡Tu asistencia ya había sido confirmada!</h2>
+        {% else %}
+          <h2>
+            ¡Nos encantaría que nos acompañes!
+          </h2>
+          <form class="form" action="/rsvp" method="post">
+            {% if errors is defined %}
+              <ul class="form__errors">
+              {% for error in errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+              </ul>
+            {% endif %}
+            <div class="form__field form__field--name">
+              <label>Nombre completo:</label>
+              <div><input type="text" name="full-name" /></div>
+            </div>
+            <div class="form__field form__field--attendance">
+              <label>Piensas asistir:</label>
+              <label>
+                Si <input type="radio" name="attending" value="yes" />
+              </label>
+              <label>
+                No <input type="radio" name="attending" value="no" />
+              </label>
+            </div>
+            <div class="form__field form__field--guest-attendance">
+              <label>¿Vas a llevar acompañante?</label>
+              <label>
+                Si <input type="radio" name="guest-attending" value="yes" />
+              </label>
+              <label>
+                No <input type="radio" name="guest-attending" value="no" checked="checked" />
+              </label>
+            </div>
+            <div class="form__field form__field--guest-name">
+              <label>Nombre completo de tu acompañante:</label>
+              <div>
+                <input type="text" name="guest-name" />
+              </div>
+            </div>
+            <div class="form__field form__field--children-attendance">
+              <label>¿Vas a llevar niños?</label>
+              <label>
+                Si <input type="radio" name="children-attending" value="yes" />
+              </label>
+              <label>
+                No <input type="radio" name="children-attending" value="no" checked="checked" />
+              </label>
+            </div>
+            <div class="form__field form__field--children-number">
+              <label>Número de niños:</label>
+              <div>
+                <input type="text" name="children-number" />
+              </div>
+            </div>
+            <div class="form__field form__field--submit">
+              <input type="submit" value="Enviar" />
+            </div>
+          </form>
         {% endif %}
-        <div class="form__field form__field--name">
-          <label>Nombre completo:</label>
-          <div><input type="text" name="full-name" /></div>
-        </div>
-        <div class="form__field form__field--attendance">
-          <label>Piensas asistir:</label>
-          <label>
-            Si <input type="radio" name="attending" value="yes" />
-          </label>
-          <label>
-            No <input type="radio" name="attending" value="no" />
-          </label>
-        </div>
-        <div class="form__field form__field--guest-attendance">
-          <label>¿Vas a llevar acompañante?</label>
-          <label>
-            Si <input type="radio" name="guest-attending" value="yes" />
-          </label>
-          <label>
-            No <input type="radio" name="guest-attending" value="no" checked="checked" />
-          </label>
-        </div>
-        <div class="form__field form__field--guest-name">
-          <label>Nombre completo de tu acompañante:</label>
-          <div>
-            <input type="text" name="guest-name" />
-          </div>
-        </div>
-        <div class="form__field form__field--children-attendance">
-          <label>¿Vas a llevar niños?</label>
-          <label>
-            Si <input type="radio" name="children-attending" value="yes" />
-          </label>
-          <label>
-            No <input type="radio" name="children-attending" value="no" checked="checked" />
-          </label>
-        </div>
-        <div class="form__field form__field--children-number">
-          <label>Número de niños:</label>
-          <div>
-            <input type="text" name="children-number" />
-          </div>
-        </div>
-        <div class="form__field form__field--submit">
-          <input type="submit" value="Enviar" />
-        </div>
-      </form>
+      {% else %}
+        <h2 class="thanks">¡Gracias por confirmar tu asistencia!</h2>
+      {% endif %}
     </div>
-    {% else %}
-      <h2 class="thanks">¡Gracias por confirmar tu asistencia!</h2>
-    {% endif %}
   </section>
   <script src="/js/jquery.js"></script>
   <script>
