@@ -122,13 +122,40 @@
     .form__field--children-number input[type=text] {
       width: 25%;
     }
+
+    .form__errors {
+      border: 1px solid #f5c6cb;
+      border-radius: 0.25rem;
+      background-color: #f8d7da;
+      padding: 0.625em 0.625em 0.625em 2.5em;
+      color: #721c24;
+      font-family: "Open Sans";
+      font-size: 1em;
+      margin-bottom: 2em;
+    }
+
+    .form__error li {
+      list-style-type: none;
+    }
+
+    .thanks {
+      padding-bottom: 1.5em;
+    }
   </style>
   <section class="main">
     <div class="rsvp">
+      {% if confirmed is not defined %}
       <h2>
         ¡Nos encantaría que nos acompañes!
       </h2>
       <form class="form" action="/rsvp" method="post">
+        {% if errors is defined %}
+          <ul class="form__errors">
+          {% for error in errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
         <div class="form__field form__field--name">
           <label>Nombre completo:</label>
           <div><input type="text" name="full-name" /></div>
@@ -177,6 +204,9 @@
         </div>
       </form>
     </div>
+    {% else %}
+      <h2 class="thanks">¡Gracias por confirmar tu asistencia!</h2>
+    {% endif %}
   </section>
   <script src="/js/jquery.js"></script>
   <script>

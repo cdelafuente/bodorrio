@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
 
+  const ERROR_FULL_NAME_REQUIRED = 'Nombre completo requerido';
+  const ERROR_ATTENDANCE_REQUIRED = 'Asistencia requerida';
+
   /**
    * @Route("/", name="homepage")
    */
@@ -53,14 +56,22 @@ class DefaultController extends Controller
     {
       if (!$request->get('full-name', null))
       {
-        $errors[] = 'Nombre completo requerido';
-        return;
+        $errors[] = self::ERROR_FULL_NAME_REQUIRED;
       }
 
       if (!$request->get('attending', null))
       {
-        $error[] = 'Asistencia requerido';
-        return;
+        $errors[] = self::ERROR_ATTENDANCE_REQUIRED;
+      }
+
+      if (!empty($errors))
+      {
+        return $this->render(
+          'default/rsvp.html.twig',
+          [
+            'errors' => $errors
+          ]
+        );
       }
 
       $em = $this->getDoctrine()->getManager();
@@ -75,13 +86,16 @@ class DefaultController extends Controller
 
       $em->persist($confirmation);
       $em->flush();
+
+      return $this->render(
+        'default/rsvp.html.twig',
+        [
+          'confirmed' => true
+        ]
+      );
     }
 
-    return $this->render(
-      'default/rsvp.html.twig',
-      [
-        'errors' => $errors
-      ]);
+    return $this->render('default/rsvp.html.twig');
   }
 
 }
