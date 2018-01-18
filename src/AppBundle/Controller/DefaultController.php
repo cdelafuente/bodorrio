@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Confirmation;
+use AppBundle\Request\RsvpRequest;
 use AppBundle\Service\ConfirmationService;
 use AppBundle\Service\RsvpRequestValidator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -54,6 +55,8 @@ class DefaultController extends Controller
    */
   public function rsvpAction(Request $request)
   {
+    $rsvpRequest = new RsvpRequest($request);
+
     if ($request->getMethod() === Request::METHOD_POST)
     {
       $validator = new RsvpRequestValidator($request);
@@ -71,13 +74,13 @@ class DefaultController extends Controller
         );
       }
 
-      $confirmation = $this->saveConfirmation($request);
+      $confirmation = $this->saveConfirmation($rsvpRequest);
 
       return $this->render(
         'default/rsvp.html.twig',
         [
-          'previouslyConfirmed' => empty($confirmation),
-          'confirmed' => !empty($confirmation)
+          'confirmed' => !empty($confirmation),
+          'previouslyConfirmed' => empty($confirmation)
         ]
       );
     }
@@ -85,33 +88,33 @@ class DefaultController extends Controller
     return $this->render(
       'default/rsvp.html.twig',
       [
-        'previouslyConfirmed' => false,
-        'confirmed' => false
+        'confirmed' => false,
+        'previouslyConfirmed' => false
       ]
     );
   }
 
   /**
-   * @param Request $request
+   * @param RsvpRequest $request
    * @return Confirmation|null
    */
-  private function saveConfirmation(Request $request)
+  private function saveConfirmation(RsvpRequest $request)
   {
     $service = new ConfirmationService($this->getDoctrine()->getManager());
 
-    if ($service->attendeeExists($request->get('full-name')))
+    if ($service->attendeeExists($request->fullName()))
     {
       return null;
     }
 
     return $service->addConfirmation(
       (new Confirmation())
-        ->setFullName($request->get('full-name', null))
-        ->setAttending($request->get('attending', false) == 'yes' ? true : false)
-        ->setGuestAttending($request->get('guest-attending', false) == 'yes' ? true: false)
-        ->setGuestName($request->get('guest-name', ''))
-        ->setChildrenAttending($request->get('children-attending', false) == 'yes' ? true : false)
-        ->setChildrenNumber($request->get('children-number', null))
+        ->setFullName($request->fullName())
+        ->setAttending($request->isAttending())
+        ->setGuestAttending($request->isGuestAttending())
+        ->setGuestName($request->guestName())
+        ->setChildrenAttending($request->areChildrenAttending())
+        ->setChildrenNumber($request->childrenNumber())
     );
   }
 
